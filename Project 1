@@ -1,0 +1,12 @@
+# Simple arithmetic
+a = 5
+b = 7
+print(a + b)
+
+# Preparing for analysis (clustering steps will follow)
+mynum = 10
+mystr = 'Hello'
+mystr2 = 'World'
+
+# Convert string to uppercase
+mystr2.upper()
