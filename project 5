@@ -1,0 +1,55 @@
+import pandas as pd
+import numpy as np  # Needed for np.int64 outputs
+
+# Creating Series
+s1 = pd.Series([11, 20, 40, 13, 45, 46])
+s1
+
+s1.index
+s1.dtype
+s1[1]  # Access by position
+
+# Series with custom index
+s2 = pd.Series([11, 20, 40, 13, 45, 46], index=['a', 'b', 'c', 'd', 'e', 'f'])
+s2
+s2.index
+s2['c']      # Access by label
+s2['c'] = 50
+s2['b':'d']  # Slicing by label
+
+# Working with Python lists
+list1 = [1, 2, 3, 4, 5]
+list1 = list1 * 3  # Repeat list
+
+# Series arithmetic
+s3 = pd.Series([1, 2, 3, 4, 5])
+s3 = s3 + 10
+s3 = s3 * 3
+
+s3 = pd.Series([1, 2, 3, 4, 5])
+s4 = pd.Series([1, 2, 3, 4, 5])
+print(s3 + s4)  # Element-wise addition
+print(s3 * s4)  # Element-wise multiplication
+
+# Membership test
+4 in s3
+
+# Series with repeated values
+s5 = pd.Series(3, index=range(100))
+s6 = pd.Series(4, index=['a', 'b', 'c', 'd', 'e'])
+
+# Filtering
+myfilter = s2 > 40
+print(s2[myfilter])
+s2[s2 > s2.mean()]
+
+# Creating Series from dictionaries
+profile = {'ID': 123, 'Name': 'David', 'Sex': 'Male', 'Age': 34}
+s7 = pd.Series(profile)
+s7['Name']
+profile['Sex']
+profile['Age']
+
+grades = {'Mari': 91, 'David': 74, 'John': 91}
+s8 = pd.Series(grades, name='Grades')
+s8
