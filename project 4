@@ -1,0 +1,17 @@
+# Importing modules
+import os
+import sys
+import math
+import statistics as st
+import random as rd
+
+# List files in current directory
+os.listdir()
+
+# Sample data list
+data_list = [10, 10, 10, 15, 30, 10, 40]
+
+# Basic statistics
+st.mean(data_list)      # Mean
+st.median(data_list)    # Median
+st.stdev(data_list)     # Standard deviation
