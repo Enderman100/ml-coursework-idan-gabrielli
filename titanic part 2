@@ -1,0 +1,40 @@
+# Titanic Project 2 – Data Cleaning
+
+import pandas as pd
+import numpy as np
+import os
+
+# Load dataset
+df = pd.read_csv('C:/Jupyter/titanic.csv')
+df.head()
+df.shape  # (891, 12)
+
+# Drop unnecessary columns
+df.drop(['Ticket', 'Fare'], axis=1, inplace=True)
+df.head()
+df.shape  # (891, 10)
+
+# Drop first 100 rows (example of row removal)
+df = pd.read_csv('C:/Jupyter/titanic.csv')
+df.drop(range(0, 100), axis=0, inplace=True)
+df.shape  # (791, 12)
+
+# Detect and handle duplicate rows
+df = pd.read_csv('titanic_dup.csv')
+df.duplicated().sum()  # Count duplicates
+df.loc[df.duplicated(keep='last'), :]  # View duplicates
+
+# Remove duplicate rows
+df.drop_duplicates(keep='first', inplace=True)
+df.shape  # (891, 12)
+
+# Detect duplicates based on 'Name' column
+df = pd.read_csv('titanic_dup2.csv')
+df['Name'].duplicated().sum()
+df.drop_duplicates(subset='Name', keep='first', inplace=True)
+df['Name'].duplicated().sum()  # Should be 0
+
+# Reset example – drop all duplicates again (if any)
+df = pd.read_csv('C:/Jupyter/titanic.csv')
+df.drop_duplicates(keep='first', inplace=True)
+df.index  # View final DataFrame index
