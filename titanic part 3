@@ -1,0 +1,66 @@
+# Titanic Project 3 – Data Transformation
+
+import pandas as pd
+import numpy as np
+import os
+
+# Load data
+df = pd.read_csv('C:/Jupyter/titanic.csv')
+df.head()
+df.shape  # (891, 12)
+
+# --- Column renaming examples ---
+df.rename(columns={'Name': 'Full_Name', 'Fare': 'Ticket_Price'}, inplace=True)
+df.columns
+
+# Rename all columns with a custom list
+new_col = ['C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'C8', 'C9', 'C10', 'C11', 'C12']
+df.columns = new_col
+df.head()
+
+# --- Handling missing values ---
+df = pd.read_csv('C:/Jupyter/titanic.csv')
+df.isnull().sum()  # Count missing values per column
+df.notnull().sum()  # Count non-missing values
+
+# Drop rows or columns with missing data
+df.dropna().shape             # Drop rows with any NaN
+df.dropna(how='all').shape    # Drop rows where all values are NaN
+df.dropna(how='all', axis=1).shape  # Drop columns where all are NaN
+df.dropna(subset=['Age', 'Cabin']).shape          # Drop rows missing both Age and Cabin
+df.dropna(subset=['Age', 'Cabin'], how='all').shape  # Keep if at least one is not NaN
+
+# Fill missing values
+df.fillna(0, inplace=False)   # Replace all NaN with 0 (example)
+df['Age'].fillna(df['Age'].mean())  # Replace missing Age with mean value
+
+# Fill missing categorical values
+df['Embarked'].value_counts(dropna=False)
+df.fillna({'Embarked': 'No Port Info'}, inplace=True)
+df['Embarked'].value_counts(dropna=False)
+
+# --- Encoding categorical variables ---
+df = pd.read_csv('C:/Jupyter/titanic.csv')
+df['gender_female'] = df['Sex'].map({'male': 0, 'female': 1})  # Convert gender to numeric
+df.drop(['Sex'], axis=1, inplace=True)
+df.head()
+
+# --- Dropping irrelevant columns before encoding ---
+df = pd.read_csv('C:/Jupyter/titanic.csv')
+df.drop(['Pclass', 'SibSp', 'Parch', 'Cabin', 'Name', 'Ticket'], axis=1, inplace=True)
+df.head()
+
+# One-hot encoding for 'Sex'
+pd.get_dummies(df, columns=['Sex'], drop_first=True)
+
+# Save one-hot encoded version
+new_df = pd.get_dummies(df, columns=['Sex'], drop_first=True)
+new_df.head()
+
+# --- Handle 'Embarked' ---
+df['Embarked'].unique()
+df.dropna(subset=['Embarked'], inplace=True)  # Drop rows missing Embarked
+pd.get_dummies(df, columns=['Embarked'], drop_first=True)
+
+# --- Save final transformed dataset ---
+new_df.to_csv('output.csv', index=False, header=True)
