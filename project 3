@@ -1,0 +1,85 @@
+# Strings
+str1 = "Hello"
+str2 = 'Hello'
+len(str1)  # 5
+
+print(str1.upper())  # HELLO
+print(str1.lower())  # hello
+
+a = "my name is saketh"
+list1 = a.split(" ")
+print(list1)  # ['my', 'name', 'is', 'saketh']
+
+# Numbers and arithmetic
+var1 = 5
+var2 = 6
+print(var1 + var2)  # 11
+
+# Lists
+colors = ['Red', 'Green', 'Yellow', 'Black']
+colors.append("White")
+print(colors)  # ['Red', 'Green', 'Yellow', 'Black', 'White']
+
+del colors[1]  # Remove 'Green'
+print(colors)  # ['Red', 'Yellow', 'Black', 'White']
+
+colors.remove('Red')
+print(len(colors))  # 3
+
+list1 = [1, 2, 3]
+list2 = [4, 5]
+newlist = list1 + list2
+print(len(newlist))  # 5
+
+newcolors = colors[:]  # Copy list
+
+# Conditionals
+z = 10
+if z > 5:
+    print(f"{z} is greater than 5")
+
+a = 5
+if a > 10:
+    print("yes")
+else:
+    print("no")
+
+# Loops
+mylist = ['Red', 'Green', 'Blue', 'White']
+for myvalues in mylist:
+    print(myvalues)
+
+for a in range(10):
+    print(a)
+
+for a in range(1, 10, 2):
+    print(a)
+
+# Dictionaries
+my_dictionary = {}
+type(my_dictionary)  # dict
+
+profile = {'ID': 123, 'Name': 'David', 'Sex': 'Male', 'Age': 34}
+print(profile)
+print(profile['Name'])  # David
+
+grades = {'Mary': 91, 'David': 74, 'John': 91}
+grades['Marta'] = 87
+print(grades)
+
+del grades['Marta']
+grades['Marta'] = 87
+print(grades.pop('Marta'))  # 87
+
+grades['Marta'] = 91
+for key, value in grades.items():
+    print(f"\nName: {key}")
+    print(f"Grade: {value}")
+
+# List of dictionaries
+profile1 = {'Name': 'David', 'ID': 123, 'Sex': 'Male', 'Age': 34}
+profile2 = {'Name': 'Dan', 'ID': 456, 'Sex': 'Male', 'Age': 26}
+profiles = [profile1, profile2]
+
+print(profiles[0])
+print(profiles[0]['Name'])
