@@ -1,0 +1,37 @@
+# Variable types and conversions
+a = 10
+type(a)  # int
+
+b = 10.5
+type(b)  # float
+
+x = float(a)  # convert int to float
+y = int(b)    # convert float to int
+
+c = 'Hello'
+type(c)  # str
+
+d = ["Red", "Green", "Blue"]
+type(d)  # list
+
+e = True
+type(e)  # bool
+
+# Printing variables
+print(a)
+print('my name is saketh')
+
+# Multiple assignment
+c1, c2, c3 = 'R', 'G', 'B'
+print(c1, c2, c3)
+
+n1 = n2 = n3 = 10
+
+# Valid variable naming
+my_name = 5
+My_name = 6
+
+# Using the 'in' operator to check substring
+str5 = "my name is saketh"
+flag = "saketh" in str5
+print(flag)  # True
