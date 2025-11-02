@@ -1,0 +1,55 @@
+# Titanic Project 1 - Exploratory Data Analysis (EDA)
+
+import pandas as pd
+
+# Load dataset
+df = pd.read_csv('C:/Jupyter/titanic.csv')
+df.head()
+
+# Basic structure
+df.shape
+df.info()
+df.describe()
+
+# View columns and datatypes
+df.dtypes
+df.columns
+
+# Summary of categorical data
+df['Sex'].value_counts()
+df['Embarked'].value_counts(dropna=False)
+df['Pclass'].value_counts(normalize=True)
+
+# Basic statistics on numeric columns
+df['Age'].mean()
+df['Fare'].mean()
+df['Age'].min(), df['Age'].max()
+
+# Check for missing values
+df.isnull().sum()
+
+# Handle missing data (example)
+df_dropna = df.dropna()
+df_dropna.shape
+
+# Filtering examples
+df[df['Age'] < 3]              # Very young passengers
+df[df['Sex'] == 'female']      # Female passengers
+df[df['Age'] > 60]             # Senior passengers
+
+# Combined conditions
+df[(df['Sex'] == 'female') & (df['Survived'] == 1)]  # Women who survived
+
+# Sorting examples
+df.sort_values('Age', ascending=True).head()
+df.sort_values(['Pclass', 'Age'], ascending=[True, False]).head()
+
+# Selecting specific columns
+df[['Name', 'Age', 'Sex', 'Survived']].head()
+
+# Use different indexing options
+df.set_index('Name', inplace=False).head()
+
+# Convert datatype example
+df_bool = pd.read_csv('C:/Jupyter/titanic.csv', dtype={'Survived': 'bool'})
+df_bool.info()
