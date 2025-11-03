@@ -10,6 +10,7 @@ This repository contains a collection of beginner-friendly machine learning and 
 |----------|-------------|
 | **Project 1–6** | Basic Python exercises covering variables, data types, lists, loops, and data structures. |
 | **Titanic Project 1–3** | Exploratory data analysis and preprocessing using the Titanic dataset from Kaggle. Demonstrates loading data, handling duplicates, and cleaning missing values. |
+| **Project 7-9** | Data visualization practice using Matplotlib, Seaborn, NumPy, and Pandas — includes creating line, scatter, and bar charts, customizing styles, and exploring datasets like Iris, Titanic, and Tips. |
 
 ## 🧾 Dataset
 
