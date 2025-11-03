@@ -1,0 +1,160 @@
+# === Import libraries ===
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
+
+# === View available datasets in seaborn ===
+sns.get_dataset_names()
+
+# === Load and inspect the iris dataset ===
+iris = sns.load_dataset("iris")
+iris.head()
+iris.count()  # Count of non-null values
+
+# === Simple categorical plots ===
+sns.catplot(x="species", y="petal_length", kind="swarm", data=iris)
+plt.show()
+
+sns.catplot(x="species", y="petal_length", kind="box", data=iris)
+plt.show()
+
+# === Compare swarm and scatter side-by-side ===
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 5))
+sns.swarmplot(x="species", y="petal_length", data=iris, ax=ax1)
+ax2.scatter("petal_width", "petal_length", data=iris)
+ax2.set_ylabel('petal_length')
+ax2.set_xlabel('petal_width')
+plt.show()
+
+# === Add titles and adjust seaborn styles ===
+sns.set()
+sns.set_style('darkgrid')
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 5))
+sns.swarmplot(x="species", y="petal_length", data=iris, ax=ax1).set_title("graph 1")
+ax2.scatter("petal_width", "petal_length", data=iris)
+ax2.set_ylabel('petal_length')
+ax2.set_xlabel('petal_width')
+plt.show()
+
+# === Change to 'ticks' style ===
+sns.set_style('ticks')
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 5))
+sns.swarmplot(x="species", y="petal_length", data=iris, ax=ax1).set_title("graph 1")
+ax2.scatter("petal_width", "petal_length", data=iris)
+ax2.set_ylabel('petal_length')
+ax2.set_xlabel('petal_width')
+plt.show()
+
+# === Basic scatter plot examples ===
+fig, ax = plt.subplots()
+sns.scatterplot(x="petal_length", y="petal_width", data=iris)
+plt.show()
+
+# === Scatter plot with color by species ===
+fig, ax = plt.subplots()
+sns.scatterplot(x="petal_length", y="petal_width", hue="species", data=iris)
+plt.show()
+
+# === NumPy array creation and properties ===
+a = np.arange(20).reshape(4, 5)
+print(a)
+print(a[0])
+print(a[3][4])
+print(a.dtype)
+print(a.ndim)
+print(a.shape)
+print(a.size)
+
+# === More NumPy array creation examples ===
+a = np.array([1, 2, 3])
+print(a)
+
+b = np.array([(1, 2, 3), (4, 5, 6)])
+print(b)
+
+c = np.arange(1, 20, 2)
+print(c)
+
+d = np.linspace(0, 20, 100)
+print(d)
+
+# Reshape linspace into 10x10
+d = np.linspace(0, 20, 100).reshape(10, 10)
+print(d)
+
+# Random 4x4 matrix
+e = np.random.rand(4, 4)
+print(e)
+
+# === Load Titanic dataset ===
+titanic = sns.load_dataset("titanic")
+titanic.head()
+titanic.isnull().sum()  # Check missing values
+
+# === Survival counts by sex ===
+survived_df = titanic[titanic['survived'] == True]
+names = survived_df['sex'].unique()
+print(names)
+
+values = survived_df['sex'].value_counts()
+print(values)
+
+# === Plot survival counts as bar chart ===
+fig, ax = plt.subplots()
+ax.bar(names, values, color=['black', 'pink'])
+ax.set_xlabel('Sex')
+ax.set_ylabel('Number of survivals')
+ax.set_title('Survivals')
+plt.show()
+
+# === Grouped survival summary ===
+survived = titanic.groupby('sex')['survived'].sum()
+survived.head()
+
+# Vertical bar chart
+fig, ax = plt.subplots()
+ax.bar(survived.index, survived.values, color=['yellow', 'black'])
+ax.set_xlabel('Sex')
+ax.set_ylabel('Number of survivals')
+ax.set_title('Survivals')
+plt.show()
+
+# Horizontal bar chart
+fig, ax = plt.subplots()
+ax.barh(survived.index, survived.values, color=['yellow', 'black'])
+ax.set_xlabel('Sex')
+ax.set_ylabel('Number of survivals')
+ax.set_title('Survivals')
+plt.show()
+
+# === Load Tips dataset ===
+tips = sns.load_dataset("tips")
+tips.head(10)
+
+# === Bar plots with seaborn ===
+fig, ax = plt.subplots()
+sns.set_style("whitegrid")
+sns.barplot(x="day", y="total_bill", data=tips, ax=ax)
+plt.show()
+
+fig, ax = plt.subplots()
+sns.barplot(x="tip", y="time", data=tips, ax=ax)
+plt.show()
+
+# Bar plot with palette
+fig, ax = plt.subplots()
+sns.barplot(x="day", y="total_bill", palette="BuGn_r", data=tips, ax=ax)
+plt.show()
+
+# === Titanic survival bar plots by class and sex ===
+fig, ax = plt.subplots()
+sns.barplot(x="sex", y="survived", hue="class", data=titanic, palette="muted", ax=ax)
+plt.show()
+
+fig, ax = plt.subplots()
+sns.barplot(x="sex", y="survived", hue="class", data=titanic, palette="muted", estimator=sum, ax=ax)
+plt.show()
+
+fig, ax = plt.subplots()
+sns.barplot(x="class", y="survived", hue="sex", data=titanic, palette="muted", estimator=sum, ax=ax)
+plt.show()
